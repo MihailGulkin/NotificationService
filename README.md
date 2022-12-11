@@ -25,19 +25,18 @@ Then install the dependencies:
 Note the `(notifEnv)` in front of the prompt.
 This indicates that this terminal session operates in a virtual environment set.
 
-Once `pip` has finished downloading the dependencies.
-Go to the root directory and run migration:
+
+Before `migrate` command, we need setup `.env` file in `core` directory.
+This directory also contains an example of a completed .env file.
+
+After setup `.env`. Go to the root directory and run migration:
 
 ```shell
 cd notifications
 python manage.py migrate
 ```
 
-After `migrate` command, we need setup `.env` file in `core` directory.
-This directory also contains an example of a completed .env file.
-
 Now we can run project:
-
 ```shell
 python manage.py runserver
 python -m celery -A core worker -l info -P eventlet
