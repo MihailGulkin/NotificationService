@@ -44,12 +44,11 @@ PROJECT_APPS = [
     'client',
     'mailing',
 ]
-# import
+
 THIRD_PARTY_APPS = [
     'rest_framework',
     'drf_spectacular',
     'django_celery_beat',
-    # 'django_celery_beat'
 
 ]
 
