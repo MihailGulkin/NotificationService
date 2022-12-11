@@ -1,0 +1,4 @@
+notifEnv
+.idea
+__pycache__
+.env
