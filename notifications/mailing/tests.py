@@ -9,6 +9,10 @@ from mailing.models import Mailing, Message, Filter
 
 
 class ClientTestCase(APITestCase):
+    """
+    Test Cases for :model:`mailing.Mailing`
+    and :model:`mailing.Message`
+    """
     all_mailing_url = reverse('list-mailing')
     create_mailing_url = reverse('create-mailing')
 
@@ -35,6 +39,9 @@ class ClientTestCase(APITestCase):
         )
 
     def test_all_mailing(self):
+        """
+        Test GET all-mailing endpoint.
+        """
         response = self.client.get(self.all_mailing_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -50,6 +57,9 @@ class ClientTestCase(APITestCase):
         )
 
     def test_create_mailing(self):
+        """
+        Test POST create mailing endpoint.
+        """
         json = {
             'start_mailing_time': "2025-12-10T17:35:15.608Z",
             'message_text': 'test_3',
@@ -73,6 +83,9 @@ class ClientTestCase(APITestCase):
         )
 
     def test_delete_mailing(self):
+        """
+        Test DELETE mailing endpoint.
+        """
         mailing_pk = self.mailing_1.pk
         delete_client_url = reverse('destroy-mailing', args=[mailing_pk])
 
@@ -85,6 +98,9 @@ class ClientTestCase(APITestCase):
         )
 
     def test_update_put_mailing(self):
+        """
+        Test PUT mailing endpoint.
+        """
         mailing_pk = self.mailing_2.pk
         update_mailing_url = reverse('update-mailing', args=[mailing_pk])
         json = {
@@ -110,6 +126,9 @@ class ClientTestCase(APITestCase):
         )
 
     def test_update_patch_mailing(self):
+        """
+        Test UPDATE mailing endpoint.
+        """
         mailing_pk = self.mailing_2.pk
         update_mailing_url = reverse('update-mailing', args=[mailing_pk])
         json = {
@@ -131,6 +150,9 @@ class ClientTestCase(APITestCase):
         )
 
     def test_list_message(self):
+        """
+        Test GET list-message-mailing_pk endpoint.
+        """
         mailing_pk = self.mailing_2.pk
         list_message_url = reverse(
             'list-message-mailing_pk',

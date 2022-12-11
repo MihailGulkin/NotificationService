@@ -37,7 +37,8 @@ class MailingListAPIView(generics.ListAPIView):
 class MailingCreateAPIView(generics.CreateAPIView):
     """
     Create :model:`mailing.Mailing`.
-    After create run root client_mailing task
+    After create run root client_mailing task and
+    run create_periodical_task func
     """
     queryset = Mailing.objects.all()
     serializer_class = MailingSerializer
