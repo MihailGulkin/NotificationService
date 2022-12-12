@@ -4,7 +4,7 @@ from .views import (
     MailingListAPIView,
     MailingUpdateAPIView,
     MailingDestroyAPIView,
-
+    FilterCreateAPIView,
     MessageListAPIView,
 )
 
@@ -17,6 +17,9 @@ urlpatterns = [
          name='update-mailing'),
     path('destroy-mailing/<int:pk>/', MailingDestroyAPIView.as_view(),
          name='destroy-mailing'),
+
+    path('create-filter', FilterCreateAPIView.as_view(),
+         name='create-filter'),
 
     path('list-message/<int:mailing_id>/', MessageListAPIView.as_view(),
          name='list-message-mailing_pk')

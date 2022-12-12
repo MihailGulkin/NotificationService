@@ -3,7 +3,9 @@ from .views import (
     ClientListAPIView,
     ClientCreateAPIView,
     ClientUpdateAPIView,
-    ClientDestroyAPIView
+    ClientDestroyAPIView,
+
+    TagClientAPIView,
 )
 
 urlpatterns = [
@@ -15,4 +17,6 @@ urlpatterns = [
          name='destroy-client'),
     path('update-client/<int:pk>/', ClientUpdateAPIView.as_view(),
          name='update-client'),
+    path('create-tag', TagClientAPIView.as_view(),
+         name='create-tag')
 ]

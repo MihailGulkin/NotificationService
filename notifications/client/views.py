@@ -1,6 +1,6 @@
 from rest_framework import generics
 
-from .serializers import ClientSerializer
+from .serializers import ClientSerializer, TagSerializer
 from .models import Client
 
 
@@ -35,3 +35,10 @@ class ClientUpdateAPIView(generics.UpdateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     lookup_field = 'pk'
+
+
+class TagClientAPIView(generics.CreateAPIView):
+    """
+     Create :model:`client.Tag`.
+     """
+    serializer_class = TagSerializer

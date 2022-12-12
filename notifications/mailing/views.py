@@ -5,7 +5,8 @@ from .services import create_periodical_task
 
 from .searilizers import (
     MailingSerializer,
-    MessageSerializer
+    MessageSerializer,
+    FilterSerializer
 )
 from .models import (
     Mailing,
@@ -67,3 +68,10 @@ class MailingUpdateAPIView(generics.UpdateAPIView):
     """
     queryset = Mailing.objects.all()
     serializer_class = MailingSerializer
+
+
+class FilterCreateAPIView(generics.CreateAPIView):
+    """
+    CREATE :model:`mailing.Filter`.
+    """
+    serializer_class = FilterSerializer

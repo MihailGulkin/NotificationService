@@ -1,9 +1,8 @@
-from django.core.validators import ValidationError
-
 from rest_framework import serializers
 
 from drf_spectacular.utils import extend_schema_field
 
+from .mixins import SerializerValidate
 from .models import (
     Mailing,
     Message,
@@ -11,10 +10,16 @@ from .models import (
 )
 
 
-class FilterSerializer(serializers.ModelSerializer):
+class FilterSerializer(
+    SerializerValidate,
+    serializers.ModelSerializer,
+):
     class Meta:
         model = Filter
         fields = '__all__'
+
+    def validate(self, data):
+        return self._validate(data, Filter)
 
 
 class MessageSerializer(serializers.ModelSerializer):
@@ -23,7 +28,11 @@ class MessageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class MailingSerializer(serializers.ModelSerializer):
+class MailingSerializer(
+    SerializerValidate,
+    serializers.ModelSerializer
+):
+
     msg_group_by_status = serializers.SerializerMethodField()
     count_msg = serializers.SerializerMethodField()
 
@@ -70,11 +79,4 @@ class MailingSerializer(serializers.ModelSerializer):
         return len(Message.objects.filter(mailing_id_id=obj.pk))
 
     def validate(self, data):
-
-        instance = Mailing(**data)
-        try:
-            instance.clean()
-        except ValidationError as e:
-            raise serializers.ValidationError(e.args[0])
-
-        return data
+        return self._validate(data, Mailing)
