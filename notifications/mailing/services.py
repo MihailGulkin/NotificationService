@@ -21,6 +21,6 @@ def create_periodical_task():
         interval=schedule,
         name='Send mail stats',
         task=f'client.tasks.{task_name}',
-        start_time=timezone.now() + timedelta(minutes=1),
+        start_time=timezone.now(),
         last_run_at=timezone.now() - timedelta(days=1)
     )

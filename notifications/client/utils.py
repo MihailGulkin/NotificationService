@@ -12,6 +12,7 @@ def generate_message_string() -> str:
         msgs = Message.objects.filter(mailing_id_id=mailing.pk)
         if index == 1:
             str_message += f'\n{index} mailing: send {len(msgs)}\n'
-        str_message += f'{index} mailing: send {len(msgs)} message\n'
+        else:
+            str_message += f'{index} mailing: send {len(msgs)} message\n'
     return f'Today we run {len(mailings)} mailing:' \
            f'{str_message}'
