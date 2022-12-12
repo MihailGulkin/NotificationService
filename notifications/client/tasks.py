@@ -63,12 +63,11 @@ def run_client_mailing(pk):
             operator_code=mail.client_filter.filter_value)
     return group(
         send_client_mailing.s(
-            *(client.phone_number,
-              client.pk,
-              mail.message_text,
-              mail.end_mailing_time,
-              mail.pk,
-              ),
+            client.phone_number,
+            client.pk,
+            mail.message_text,
+            mail.end_mailing_time,
+            mail.pk,
             task_id=index)
         for index, client in enumerate(clients)
     )()
