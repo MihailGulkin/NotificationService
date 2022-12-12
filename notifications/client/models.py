@@ -25,6 +25,7 @@ class Client(models.Model):
     """
     TIMEZONE_SET = zip(all_timezones, all_timezones)
     phone_number = models.CharField(
+        unique=True,
         validators=[RegexValidator(regex=r"^7\d{10}$",
                                    message="Incorrect number")],
         max_length=11,
