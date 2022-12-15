@@ -37,6 +37,8 @@ class ClientUpdateAPIView(generics.UpdateAPIView):
     lookup_field = 'pk'
 
 
+
+
 class TagClientAPIView(generics.CreateAPIView):
     """
      Create :model:`client.Tag`.

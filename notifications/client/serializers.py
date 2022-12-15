@@ -9,7 +9,12 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 class ClientSerializer(serializers.ModelSerializer):
-    tag_list = TagSerializer(many=True, read_only=True, source='tag')
+    tag_list = TagSerializer(many=True, source='tag')
+
+    def update(self, instance, validated_data):
+        tag = Tag.objects.filter(tag_name=validated_data['tag'][0]['tag_name']).first()
+        instance.tag.add(tag)
+        return instance
 
     class Meta:
         model = Client
