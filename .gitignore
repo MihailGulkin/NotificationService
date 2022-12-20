@@ -2,3 +2,5 @@ notifEnv
 .idea
 __pycache__
 .env
+mediafiles
+staticfiles
